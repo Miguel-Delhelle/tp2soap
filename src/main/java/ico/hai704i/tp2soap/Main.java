@@ -4,18 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.springframework.boot.SpringApplication;
 
 import common.MDMethod;
+import web.service.Agence;
 
 @SuppressWarnings("unused")
 public class Main {
 
 	
-	public Main() {
-		super();
-	}
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//SpringApplication.run(Main.class, args);

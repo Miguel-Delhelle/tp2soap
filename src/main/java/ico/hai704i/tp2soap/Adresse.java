@@ -9,7 +9,7 @@ public class Adresse {
 	private String ville;
 	
 	// Constructeurs
-	Adresse(String numero, String rue, String codePostal, String ville, String pays){
+	public Adresse(String numero, String rue, String codePostal, String ville, String pays){
 		this.pays = pays;
 		this.rue = rue;
 		this.numero = numero;

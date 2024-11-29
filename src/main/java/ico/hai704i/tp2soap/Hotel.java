@@ -129,7 +129,8 @@ public class Hotel {
 		}
 		
 		for (int i = 0; i< this.getListeChambre().size();i++) {
-			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && !this.getListeChambre().get(i).equals(tmpChambre)){
+			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && 
+					!this.getListeChambre().get(i).equals(tmpChambre)){
 				str = str+"\n"+this.getListeChambre().get(i).toString();
 				tmpChambre = this.getListeChambre().get(i);
 			}

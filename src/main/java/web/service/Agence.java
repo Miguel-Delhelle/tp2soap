@@ -1,8 +1,15 @@
-package ico.hai704i.tp2soap;
+package web.service;
 
 import java.util.ArrayList;
 
-public class Agence {
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import ico.hai704i.tp2soap.*;
+
+@WebService(endpointInterface="web.service.IAgence")
+public class Agence implements IAgence{
+	
 	private String nomAgence;
 	private ArrayList <Hotel> listeHotel = new ArrayList <>();
 
@@ -48,6 +55,14 @@ public class Agence {
 	
 	@Override
 	public String toString() {
+		String str ="";
+		for (int i=0; i<listeHotel.size();i++) {
+			str = str+listeHotel.get(i).toString();
+		}
+		return str;
+	}
+	@WebMethod
+	public String afficherListeHotel() {
 		String str ="";
 		for (int i=0; i<listeHotel.size();i++) {
 			str = str+listeHotel.get(i).toString();
