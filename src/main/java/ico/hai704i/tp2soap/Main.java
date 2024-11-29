@@ -1,4 +1,4 @@
-package ico.hai704i.tp2soap;
+/*package ico.hai704i.tp2soap;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 
 import common.MDMethod;
-import web.service.Agence;
 
 @SuppressWarnings("unused")
 public class Main {
@@ -77,4 +76,4 @@ public class Main {
 		} 
 		sc.close();
 	} 
-}
+}*/

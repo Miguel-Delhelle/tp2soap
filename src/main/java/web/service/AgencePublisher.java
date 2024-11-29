@@ -1,4 +1,4 @@
-package web.service;
+/*package web.service;
 
 import javax.xml.ws.Endpoint;
 
@@ -21,11 +21,11 @@ public class AgencePublisher {
 		nordFrance.generateurChambre(12, 6, 200);
 		Agence franceHotel = new Agence("France Hotel");
 		franceHotel.addHotel(lilleFrance);franceHotel.addHotel(mtpFrance);franceHotel.addHotel(nordFrance);
-		*/
+		
 		Agence agence = new Agence();
 		
 		Endpoint.publish("http://localhost:8888",agence);
 		System.err.println("Server is ready");
 	}
 
-}
+}*/

@@ -1,13 +1,11 @@
-package web.service;
+package ico.hai704i.tp2soap;
 
 import java.util.ArrayList;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import ico.hai704i.tp2soap.*;
-
-@WebService(endpointInterface="web.service.IAgence")
+@WebService(endpointInterface="ico.hai704i.tp2soap.IAgence")
 public class Agence implements IAgence{
 	
 	private String nomAgence;
