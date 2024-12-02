@@ -143,8 +143,8 @@ public class Hotel {
 	
 	@Override
 	public String toString() {
-		return "Hotel "+ this.getNom() + " à "+ this.getAdresse().getVille() + "\n" + this.getNombreEtoileToString() + 
-				"\nNombre de chambre: "+ this.getListeChambre().size();
+		return "Hotel "+ this.getNom() + " à "+ this.getAdresse().getVille() + this.getNombreEtoileToString() + 
+				"Nombre de chambre: "+ this.getListeChambre().size();
 	}
 	public boolean equals(Hotel hotel2) {
 		if ((this.getNom().equals(hotel2.getNom())) && (this.getAdresse().equals(hotel2.getAdresse()))) {

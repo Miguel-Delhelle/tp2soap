@@ -63,7 +63,7 @@ public class Agence implements IAgence{
 	public String afficherListeHotel() {
 		String str ="";
 		for (int i=0; i<listeHotel.size();i++) {
-			str = str+listeHotel.get(i).toString();
+			str = str+listeHotel.get(i).toString()+"\n";
 		}
 		
 		return str;
