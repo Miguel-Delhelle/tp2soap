@@ -28,7 +28,8 @@ public class Reservation { //Class associative
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
 		this.dateReservee = setArrayDateReservee();
-		this.chambreReservee = hotelReservee.getChambreDisponible(this);
+		this.chambreReservee = this.hotelReservee.getChambreDisponible(this);
+		this.hotelReservee.getChambreDisponible(this).setReservation(this);
 		this.setDateReservee();
 	}
 	

@@ -1,18 +1,13 @@
-package ico.hai704i.tp2soap;
-
-import java.time.LocalDate;
-import java.util.Scanner;
+package web.service;
 
 import javax.xml.ws.Endpoint;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import ico.hai704i.tp2soap.Adresse;
+import ico.hai704i.tp2soap.Hotel;
 
-
-import common.MDMethod;
-
-//@SpringBootApplication
+@SpringBootApplication
 public class Tp2soapApplication {
 
 	public static void main(String[] args) {
@@ -24,7 +19,7 @@ public class Tp2soapApplication {
 		Hotel  mtpFrance= new Hotel("à la Comédie", adresseHotel2,4);
 		Hotel  lilleFrance= new Hotel("chez les flamands", adresseHotel3, 3);
 		lilleFrance.generateurChambre(30, 2, 45);
-		mtpFrance.generateurChambre(15, 1, 300);
+		mtpFrance.generateurChambre(4, 1, 300);
 		nordFrance.generateurChambre(30, 2, 35);
 		nordFrance.generateurChambre(12, 6, 200);
 		Agence franceHotel = new Agence("France Hotel");
@@ -34,4 +29,8 @@ public class Tp2soapApplication {
 		System.err.println("Server is ready");
 	}
 
-} 
+}
+
+/* Ok alors il y a beaucoup de chose à changer, il faut bien vérfier que toutes les associations se font à chaque réservation.
+ * Afficher une exception si la Chambre dans un hotel n'est pas disponible
+ * Vérifier l'ensemble et voilà tout */

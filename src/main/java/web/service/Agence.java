@@ -1,11 +1,17 @@
-package ico.hai704i.tp2soap;
+package web.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-@WebService(endpointInterface="ico.hai704i.tp2soap.IAgence")
+import common.MDMethod;
+import ico.hai704i.tp2soap.Hotel;
+import ico.hai704i.tp2soap.Personne;
+import ico.hai704i.tp2soap.Reservation;
+
+@WebService(endpointInterface="web.service.IAgence")
 public class Agence implements IAgence{
 	
 	private String nomAgence;
@@ -67,5 +73,18 @@ public class Agence implements IAgence{
 		}
 		
 		return str;
+	}
+	
+	@WebMethod
+	public void setReservation(String strHotelReservee, String strDateEntree, String strDateSortie) {
+		System.out.println("les paramètres rentrées sont bel et bien"+strHotelReservee+strDateEntree+strDateSortie);
+		Hotel hotelReservee = stringToHotel(strHotelReservee);
+		LocalDate dateEntree = MDMethod.strToDat(strDateEntree);
+		LocalDate dateSortie = MDMethod.strToDat(strDateSortie);
+		Personne client = new Personne();
+		Reservation reservation = new Reservation(client,hotelReservee, dateEntree, dateSortie);
+		
+		System.out.println(reservation.toString());
+		
 	}
 }

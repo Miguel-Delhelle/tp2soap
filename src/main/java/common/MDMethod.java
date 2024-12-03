@@ -1,10 +1,7 @@
 package common;
-import java.util.*;
 import java.time.LocalDate;
 
-/* Cette classe a pour utilité et fonction se base sur la classe LocalDate, mais avec des méthodes qu'on peut utiliser facilement. 
- * Et en étant pensé pour une application destinée à des utilisateus francophones.
- */
+
 
 
 public abstract class MDMethod{
