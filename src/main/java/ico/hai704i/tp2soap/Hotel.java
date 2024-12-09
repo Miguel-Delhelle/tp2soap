@@ -3,8 +3,11 @@ package ico.hai704i.tp2soap;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import common.MDMethod;
 
+@XmlRootElement
 public class Hotel {
 	
 	// Attribut//
@@ -139,6 +142,30 @@ public class Hotel {
 			return "Aucune date disponible à ce moment";
 		}
 		return str+"\nDisponible du: "+ MDMethod.dateToFrenchString(dateEntree)+" jusqu'au "+ MDMethod.dateToFrenchString(dateSortie);
+	}
+	
+	public ArrayList<Chambre> listeChambreDisponible_ARRAYLIST(LocalDate dateEntree, LocalDate dateSortie) {
+		String str ="";
+		Chambre tmpChambre = new Chambre();
+		LocalDate dateTmp = dateEntree;
+		// Initialisation liste de date
+		ArrayList<LocalDate> arrayDateReservee = new ArrayList<>();
+		while (!dateTmp.equals(dateSortie)) {
+			arrayDateReservee.add(dateTmp);
+			dateTmp = dateTmp.plusDays(1);
+		}
+		ArrayList<Chambre> listeChambreDispo = new ArrayList<>();
+		for (int i = 0; i< this.getListeChambre().size();i++) {
+			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && 
+					!this.getListeChambre().get(i).equals(tmpChambre)){
+				str = str+"\n"+this.getListeChambre().get(i).toString();
+				listeChambreDispo.add(this.getListeChambre().get(i));
+			}
+		}
+		if (str.equals("")) {
+			return null;
+		}
+		return listeChambreDispo;
 	}
 	
 	@Override

@@ -5,12 +5,14 @@ import java.util.ArrayList;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import common.MDMethod;
 import ico.hai704i.tp2soap.Hotel;
 import ico.hai704i.tp2soap.Personne;
 import ico.hai704i.tp2soap.Reservation;
 
+@XmlRootElement
 @WebService(endpointInterface="web.service.IAgence")
 public class Agence implements IAgence{
 	
@@ -31,6 +33,7 @@ public class Agence implements IAgence{
 		super();
 	}
 
+	@WebMethod
 	public ArrayList<Hotel> getListeHotel() {
 		return listeHotel;
 	}
@@ -96,6 +99,5 @@ public class Agence implements IAgence{
 		Personne client = new Personne(nom,prenom,age);
 		Reservation reservation = new Reservation(client,hotelReservee, dateEntree, dateSortie);
 		System.out.println(reservation.toString());
-		
 	}
 }

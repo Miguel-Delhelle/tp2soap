@@ -78,7 +78,7 @@ public class Chambre {
 		LocalDate auj = LocalDate.now();
 		HashMap <LocalDate, String> ListeDisponibilite = new HashMap<LocalDate, String>();
 		ListeDisponibilite.put(auj, "Disponible");
-		for (int i = 0; i <= 365; i++) { // le calendrier n'ira plus loin qu'une année
+		for (int i = 0; i <= 20; i++) { // le calendrier n'ira plus loin qu'un quart d'année 
 			ListeDisponibilite.put(auj.plusDays(i), "Disponible");
 		}
 		return ListeDisponibilite;

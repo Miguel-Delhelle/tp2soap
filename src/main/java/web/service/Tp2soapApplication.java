@@ -18,10 +18,10 @@ public class Tp2soapApplication {
 		Hotel  nordFrance= new Hotel("à Saint-O", adresseHotel,3);
 		Hotel  mtpFrance= new Hotel("à la Comédie", adresseHotel2,4);
 		Hotel  lilleFrance= new Hotel("chez les flamands", adresseHotel3, 3);
-		lilleFrance.generateurChambre(30, 2, 45);
-		mtpFrance.generateurChambre(4, 1, 300);
-		nordFrance.generateurChambre(30, 2, 35);
-		nordFrance.generateurChambre(12, 6, 200);
+		lilleFrance.generateurChambre(4, 2, 45);
+		mtpFrance.generateurChambre(2, 1, 300);
+		nordFrance.generateurChambre(2, 2, 35);
+		nordFrance.generateurChambre(1, 6, 200);
 		Agence franceHotel = new Agence("France Hotel");
 		franceHotel.addHotel(lilleFrance);franceHotel.addHotel(mtpFrance);franceHotel.addHotel(nordFrance);
 		
