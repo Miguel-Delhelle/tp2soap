@@ -12,7 +12,19 @@ public interface IAgence {
 	
 	@WebMethod
 	public void setReservation (
-			@WebParam(name = "arg0") String strHotelReservee, 
-	        @WebParam(name = "arg1") String strDateEntree, 
-	        @WebParam(name = "arg2") String strDateSortie);
+			@WebParam(name = "nomHotel") String strHotelReservee, 
+	        @WebParam(name = "dateEntree") String strDateEntree, 
+	        @WebParam(name = "dateSortie") String strDateSortie);
+	
+	@WebMethod
+	public void setReservationWithPerson(
+
+			@WebParam(name = "prenom")String prenom, 
+			@WebParam(name = "nom")String nom, 
+			@WebParam(name = "age")int age, 
+			@WebParam(name = "nomHotel")String strHotelReservee, 
+			@WebParam(name = "dateEntree")String strDateEntree, 
+			@WebParam(name = "dateSortie")String strDateSortie);
+
 }
+

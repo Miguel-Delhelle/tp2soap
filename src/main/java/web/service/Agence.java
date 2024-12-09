@@ -14,7 +14,7 @@ import ico.hai704i.tp2soap.Reservation;
 @WebService(endpointInterface="web.service.IAgence")
 public class Agence implements IAgence{
 	
-	private String nomAgence;
+	private String nomAgence = "agence";
 	private ArrayList <Hotel> listeHotel = new ArrayList <>();
 
 	public Agence(String nomAgence, ArrayList<Hotel> listeHotel) {
@@ -84,6 +84,17 @@ public class Agence implements IAgence{
 		Personne client = new Personne();
 		Reservation reservation = new Reservation(client,hotelReservee, dateEntree, dateSortie);
 		
+		System.out.println(reservation.toString());
+		
+	}
+	@WebMethod
+	public void setReservationWithPerson(String prenom, String nom, int age, String strHotelReservee, String strDateEntree, String strDateSortie) {
+		System.out.println("les paramètres rentrées sont bel et bien"+strHotelReservee+strDateEntree+strDateSortie);
+		Hotel hotelReservee = stringToHotel(strHotelReservee);
+		LocalDate dateEntree = MDMethod.strToDat(strDateEntree);
+		LocalDate dateSortie = MDMethod.strToDat(strDateSortie);
+		Personne client = new Personne(nom,prenom,age);
+		Reservation reservation = new Reservation(client,hotelReservee, dateEntree, dateSortie);
 		System.out.println(reservation.toString());
 		
 	}
