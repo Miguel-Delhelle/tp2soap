@@ -1,8 +1,12 @@
 package ico.hai704i.tp2soap;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map.Entry;
+
+import common.MDMethod;
 
 public class Chambre {
 
@@ -10,6 +14,7 @@ public class Chambre {
 	private int numeroChambre;
 	private int nombreLit;
 	private double prix;
+	private TypeChambre typeChambre;
 	private Hotel hotel;
 	private HashMap <LocalDate, String> disponibilite;
 	private Reservation reservation;
@@ -23,6 +28,16 @@ public class Chambre {
 		this.prix = prix;
 		this.hotel = hotel;
 		this.disponibilite = this.setDisponibiliteInitial();
+		this.typeChambre = TypeChambre.Simple;
+	}
+	public Chambre(int numeroChambre, int nombreLit, double prix, Hotel hotel, TypeChambre typeChambre) {
+		super();
+		this.numeroChambre = numeroChambre;
+		this.nombreLit = nombreLit;
+		this.prix = prix;
+		this.hotel = hotel;
+		this.disponibilite = this.setDisponibiliteInitial();
+		this.typeChambre = typeChambre;
 	}
 	public Chambre(int numeroChambre, int nombreLit, double prix) {
 		super();
@@ -30,6 +45,15 @@ public class Chambre {
 		this.nombreLit = nombreLit;
 		this.prix = prix;
 		this.disponibilite = this.setDisponibiliteInitial();
+	}
+	public Chambre(int numeroChambre, Hotel hotel, TypeChambre typeChambre) {
+		super();
+		this.numeroChambre = numeroChambre;
+		this.nombreLit = typeChambre.getNombreLit();
+		this.prix = typeChambre.getPrix();
+		this.hotel = hotel;
+		this.disponibilite = this.setDisponibiliteInitial();
+		this.typeChambre = typeChambre;
 	}
 	public Chambre() {
 		super();
@@ -71,6 +95,19 @@ public class Chambre {
 	public void setDisponibilite(HashMap<LocalDate, String> disponibilite) {
 		this.disponibilite = disponibilite;
 	}
+	
+	public TypeChambre getTypeChambre() {
+		return typeChambre;
+	}
+	public void setTypeChambre(TypeChambre typeChambre) {
+		this.typeChambre = typeChambre;
+	}
+	
+	
+	// Méthode
+	
+	
+
 	public HashMap<LocalDate, String> getDisponibilite() {
 		return disponibilite;
 	}
@@ -101,7 +138,7 @@ public class Chambre {
 		String dateDispo ="";
 		for (int i = 0; i< listeDate.size(); i++) {
 			LocalDate dateTmp = listeDate.get(i);
-			dateDispo = dateDispo+frenchDate(dateTmp)+"\n";
+			dateDispo = dateDispo+MDMethod.dateToFrenchString(dateTmp)+"\n";
 		}
 		return dateDispo;
 	}
@@ -115,39 +152,6 @@ public class Chambre {
 		}
 	}
 	
-	public String frenchDate(LocalDate date) {
-		
-		String[] dateTab = date.toString().split("-");
-		String annee = dateTab[0];
-		// Affichage mois
-		String mois = dateTab[1];
-		if (mois.equals("01")) {mois = "janvier";}
-		if (mois.equals("02")) {mois = "février";}
-		if (mois.equals("03")) {mois = "mars";}
-		if (mois.equals("04")) {mois = "avril";}
-		if (mois.equals("05")) {mois = "mai";}
-		if (mois.equals("06")) {mois = "juin";}
-		if (mois.equals("07")) {mois = "juillet";}
-		if (mois.equals("08")) {mois = "août";}
-		if (mois.equals("09")) {mois = "septembre";}
-		if (mois.equals("10")) {mois = "octobre";}
-		if (mois.equals("11")) {mois = "novembre";}
-		if (mois.equals("12")) {mois = "decembre";}
-		// Affichage jour
-		String numeroJour = dateTab[2];
-		/*
-		String jour; 
-		if ( date.getDayOfWeek().toString().equals("MONDAY")) {jour = "Lundi";}
-		if ( date.getDayOfWeek().toString().equals("TUESDAY")) {jour = "Mardi";}
-		if ( date.getDayOfWeek().toString().equals("WEDNESDAY")) {jour = "Mercredi";}
-		if ( date.getDayOfWeek().toString().equals("THURSDAY")) {jour = "Jeudi";}
-		if ( date.getDayOfWeek().toString().equals("FRIDAY")) {jour = "Vendredi";}
-		if ( date.getDayOfWeek().toString().equals("SATURDAY")) {jour = "Samedi";}
-		if ( date.getDayOfWeek().toString().equals("SUNDAY")) {jour = "Dimanche";} */
-
-
-		return numeroJour+" "+mois+" "+annee; 
-	}
 	@Override
 	public String toString() {
 		String str = "Numéro: "+this.getNumeroChambre()+"\nNombre lit: "+this.getNombreLit()+"\nPrix: "+this.getPrix();

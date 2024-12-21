@@ -2,12 +2,19 @@ package ico.hai704i.tp2soap;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import common.MDMethod;
+import exception.ChambreNonDisponibleException;
+import exception.ReservationFailedException;
+import web.service.IHotel;
 
 @XmlRootElement
+@WebService(endpointInterface="web.service.IHotel")
 public class Hotel implements IHotel {
 	
 	// Attribut//
@@ -90,6 +97,8 @@ public class Hotel implements IHotel {
 	public void setListeChambre(ArrayList<Chambre> listeChambre) {
 		this.listeChambre = listeChambre;
 	} 
+	
+	
 	// Méthode
 	public void generateurChambre(int nbrChambre, int nbrLit, double prix) {
 		ArrayList <Chambre> listeChambre = new ArrayList<>();
@@ -99,16 +108,16 @@ public class Hotel implements IHotel {
 		}
 		this.getListeChambre().addAll(listeChambre);
 	}
-	public Chambre getChambreDisponible(Reservation reservation) {
-		ArrayList <LocalDate> arrayDateReservee = reservation.getArrayDateReservee();
-		Chambre tmpChambre= new Chambre();
-		for (int i = 0; i< this.getListeChambre().size();i++) {
-			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && !this.getListeChambre().get(i).equals(tmpChambre)){
-				tmpChambre = this.getListeChambre().get(i);
-			}
+	public void generateurChambre(int nbrChambre,TypeChambre typeChambre) {
+		ArrayList <Chambre> listeChambre = new ArrayList<>();
+		for (int i =0; i < nbrChambre; i++) {
+			Chambre tmpChambre = new Chambre(i+1+this.getListeChambre().size(),this, typeChambre);
+			listeChambre.add(tmpChambre);
 		}
-		return tmpChambre;
+		this.getListeChambre().addAll(listeChambre);
 	}
+	
+	
 	public String listeChambreDisponible(LocalDate uneDate) {
 		String str ="";
 		Chambre tmpChambre = new Chambre();
@@ -168,6 +177,8 @@ public class Hotel implements IHotel {
 		return listeChambreDispo;
 	}
 	
+	// Méthode Overridé
+	
 	@Override
 	public String toString() {
 		return "Hotel "+ this.getNom() + " à "+ this.getAdresse().getVille() + this.getNombreEtoileToString() + 
@@ -186,6 +197,85 @@ public class Hotel implements IHotel {
 		else {
 			return false;
 		}
+	}
+
+	// Web Methode
+	
+	@WebMethod
+	public Chambre getChambreDisponible(Reservation reservation) {
+		ArrayList <LocalDate> arrayDateReservee = reservation.getArrayDateReservee();
+		Chambre tmpChambre= new Chambre();
+		for (int i = 0; i< this.getListeChambre().size();i++) {
+			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && !this.getListeChambre().get(i).equals(tmpChambre)){
+				tmpChambre = this.getListeChambre().get(i);
+			}
+		}
+		return tmpChambre;
+	}
+	
+	@WebMethod
+	public Chambre getChambreDisponible(Reservation reservation, TypeChambre typeDeChambre) throws ChambreNonDisponibleException {
+		ArrayList <LocalDate> arrayDateReservee = reservation.getArrayDateReservee();
+		Chambre tmpChambre= new Chambre();
+		for (int i = 0; i< this.getListeChambre().size();i++) {
+			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && !this.getListeChambre().get(i).equals(tmpChambre)){
+				tmpChambre = this.getListeChambre().get(i);
+				if (tmpChambre.getTypeChambre().equals(typeDeChambre)) {
+					return tmpChambre;
+				}
+			}
+		}
+		throw new ChambreNonDisponibleException();
+	}
+
+	public Chambre getChambreDisponible(LocalDate dateEntree, LocalDate dateSortie, TypeChambre typeDeChambre) throws ChambreNonDisponibleException {
+		Reservation traitementInfoDate = new Reservation(dateEntree,dateSortie);
+		ArrayList <LocalDate> arrayDateReservee = traitementInfoDate.getArrayDateReservee();
+		Chambre tmpChambre= new Chambre();
+		for (int i = 0; i< this.getListeChambre().size();i++) {
+			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && !this.getListeChambre().get(i).equals(tmpChambre)){
+				tmpChambre = this.getListeChambre().get(i);
+				if (tmpChambre.getTypeChambre().equals(typeDeChambre)) {
+					return tmpChambre;
+				}
+			}
+		}
+		throw new ChambreNonDisponibleException();
+	}
+
+	@WebMethod
+	public List<TypeChambre> listeTypeChambre() {
+		List<TypeChambre> typeChambreInHotel = new ArrayList<>();
+		for (Chambre chambreIte : this.getListeChambre()) {
+			if (!typeChambreInHotel.contains(chambreIte.getTypeChambre())) {
+				typeChambreInHotel.add(chambreIte.getTypeChambre());
+			}
+		}
+		
+		return typeChambreInHotel;
+	}
+
+
+	@WebMethod
+	public void setReservationWM(Personne clientAuth) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@WebMethod
+	public void setReservationWM(String strDateEntree, String strDateSortie, TypeChambre typeDeChambre) throws ReservationFailedException, ChambreNonDisponibleException {
+		LocalDate dateEntree = MDMethod.strToDat(strDateEntree);
+		LocalDate dateSortie = MDMethod.strToDat(strDateSortie);
+		Personne client = new Personne();
+		Reservation reservation = new Reservation(client,this.getChambreDisponible(dateEntree, dateSortie, typeDeChambre),dateEntree,dateSortie);
+		
+		System.out.println(reservation.toString());
+	}
+	
+	@WebMethod
+	public Hotel getThis() {
+		return this;
 	}
 	
 }

@@ -35,14 +35,20 @@ public class Reservation { //Class associative
 	
 	public Reservation(Personne client, Chambre chambreReservee, LocalDate dateEntree, LocalDate dateSortie) {
 		this.client = client;
-		this.hotelReservee = chambreReservee.getHotel();
 		this.chambreReservee = chambreReservee;
+		this.hotelReservee = chambreReservee.getHotel();
 		this.dateEntree = dateEntree;
 		this.dateSortie = dateSortie;
 		this.dateReservee = setArrayDateReservee();
 		this.setDateReservee();
 	}
 
+	public Reservation(LocalDate dateEntree, LocalDate dateSortie) {
+
+		this.dateEntree = dateEntree;
+		this.dateSortie = dateSortie;
+		this.dateReservee = setArrayDateReservee();
+	}
 	public Reservation(Personne client, Chambre chambreReservee, ArrayList<LocalDate> dateReservee) {
 		super();
 		this.client = client;
