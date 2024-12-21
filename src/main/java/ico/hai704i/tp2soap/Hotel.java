@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import common.MDMethod;
 
 @XmlRootElement
-public class Hotel {
+public class Hotel implements IHotel {
 	
 	// Attribut//
 	private String nom;
