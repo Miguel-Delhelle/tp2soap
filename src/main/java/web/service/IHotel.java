@@ -1,5 +1,6 @@
 package web.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -13,7 +14,7 @@ import ico.hai704i.tp2soap.Personne;
 import ico.hai704i.tp2soap.Reservation;
 import ico.hai704i.tp2soap.TypeChambre;
 
-@WebService
+@WebService(name = "IHotelService", targetNamespace = "http://web.service.hotel/")
 public interface IHotel{
 
 	// Récupérer Hotel
@@ -29,18 +30,15 @@ public interface IHotel{
 	public String toString();
 	
 	@WebMethod
-	public Chambre getChambreDisponible(Reservation reservation);
-	
-	@WebMethod
-	public Chambre getChambreDisponible(Reservation reservation, TypeChambre typeDeChambre) throws ChambreNonDisponibleException;
+	public Chambre getChambreDisponible(LocalDate dateEntree, LocalDate dateSortie, TypeChambre typeDeChambre) throws ChambreNonDisponibleException;
 	
 	@WebMethod
 	public List<TypeChambre> listeTypeChambre();
 	
 	@WebMethod
-	public void setReservationWM(String dateEntree, String dateSortie, TypeChambre typeDeChambre) throws ReservationFailedException, ChambreNonDisponibleException;
+	public void setReservationWM(String dateEntree, String dateSortie, String typeDeChambre) throws ReservationFailedException, ChambreNonDisponibleException;
 	
 	@WebMethod
-	public void setReservationWM(Personne clientAuth); // Pas vraiment implanter puisqu'il faudrait penser un modèle d'authentification, et la base de donnée.
+	public void setReservationWM_Auth(Personne clientAuth); // Pas vraiment implanter puisqu'il faudrait penser un modèle d'authentification, et la base de donnée.
 	
 }

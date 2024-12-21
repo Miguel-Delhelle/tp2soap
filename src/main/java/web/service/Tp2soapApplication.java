@@ -22,9 +22,9 @@ public class Tp2soapApplication {
 		//lilleFrance.generateurChambre(4, 2, 45);
 		//mtpFrance.generateurChambre(5, TypeChambre.Simple);
 		saintOtel.generateurChambre(10, TypeChambre.Suite);
-		saintOtel.generateurChambre(5,TypeChambre.Suite);
+		saintOtel.generateurChambre(5,TypeChambre.Luxe);
 		
-		Endpoint.publish("http://localhost:8888/agence",saintOtel);
+		Endpoint.publish("http://localhost:8888/saintOtel",saintOtel);
 		System.err.println("Server is ready");
 	}
 

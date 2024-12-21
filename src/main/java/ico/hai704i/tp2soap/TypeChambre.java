@@ -37,7 +37,4 @@ public enum TypeChambre {
 	}
 	
 	
-	
-	
-	
 }

@@ -14,7 +14,7 @@ import exception.ReservationFailedException;
 import web.service.IHotel;
 
 @XmlRootElement
-@WebService(endpointInterface="web.service.IHotel")
+@WebService(endpointInterface="web.service.IHotel", targetNamespace = "http://web.service.hotel/")
 public class Hotel implements IHotel {
 	
 	// Attribut//
@@ -201,7 +201,6 @@ public class Hotel implements IHotel {
 
 	// Web Methode
 	
-	@WebMethod
 	public Chambre getChambreDisponible(Reservation reservation) {
 		ArrayList <LocalDate> arrayDateReservee = reservation.getArrayDateReservee();
 		Chambre tmpChambre= new Chambre();
@@ -213,7 +212,7 @@ public class Hotel implements IHotel {
 		return tmpChambre;
 	}
 	
-	@WebMethod
+	/*@WebMethod
 	public Chambre getChambreDisponible(Reservation reservation, TypeChambre typeDeChambre) throws ChambreNonDisponibleException {
 		ArrayList <LocalDate> arrayDateReservee = reservation.getArrayDateReservee();
 		Chambre tmpChambre= new Chambre();
@@ -226,8 +225,9 @@ public class Hotel implements IHotel {
 			}
 		}
 		throw new ChambreNonDisponibleException();
-	}
+	} */
 
+	@WebMethod
 	public Chambre getChambreDisponible(LocalDate dateEntree, LocalDate dateSortie, TypeChambre typeDeChambre) throws ChambreNonDisponibleException {
 		Reservation traitementInfoDate = new Reservation(dateEntree,dateSortie);
 		ArrayList <LocalDate> arrayDateReservee = traitementInfoDate.getArrayDateReservee();
@@ -257,20 +257,22 @@ public class Hotel implements IHotel {
 
 
 	@WebMethod
-	public void setReservationWM(Personne clientAuth) {
+	public void setReservationWM_Auth(Personne clientAuth) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
 	@WebMethod
-	public void setReservationWM(String strDateEntree, String strDateSortie, TypeChambre typeDeChambre) throws ReservationFailedException, ChambreNonDisponibleException {
+	public void setReservationWM(String strDateEntree, String strDateSortie, String strTypeDeChambre) throws ReservationFailedException, ChambreNonDisponibleException {
+		TypeChambre typeDeChambre = TypeChambre.valueOf(strTypeDeChambre);
 		LocalDate dateEntree = MDMethod.strToDat(strDateEntree);
 		LocalDate dateSortie = MDMethod.strToDat(strDateSortie);
 		Personne client = new Personne();
 		Reservation reservation = new Reservation(client,this.getChambreDisponible(dateEntree, dateSortie, typeDeChambre),dateEntree,dateSortie);
 		
 		System.out.println(reservation.toString());
+		System.out.println(reservation.afficherConfirmation());
 	}
 	
 	@WebMethod
