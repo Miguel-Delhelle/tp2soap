@@ -14,16 +14,18 @@ public class Tp2soapApplication {
 	public static void main(String[] args) {
 		//SpringApplication.run(Tp2soapApplication.class, args);
 		Adresse adresseHotel = new Adresse ("97", "Route de Clairmarais","62500","Saint-Omer","France");
-		//Adresse adresseHotel2 = new Adresse ("23", "Place de la Comédie", "34000", "Montpellier", "France");
-		//Adresse adresseHotel3 = new Adresse ("12"," Place du général de Gaulle", "59000","Lille", "France");
+		Adresse adresseHotel2 = new Adresse ("23", "Place de la Comédie", "34000", "Montpellier", "France");
+		Adresse adresseHotel3 = new Adresse ("12"," Place du général de Gaulle", "59000","Lille", "France");
 		Hotel  saintOtel= new Hotel("à Saint-O", adresseHotel,3);
-		//Hotel  mtpFrance= new Hotel("à la Comédie", adresseHotel2,4);
-		//Hotel  lilleFrance= new Hotel("chez les flamands", adresseHotel3, 3);
-		//lilleFrance.generateurChambre(4, 2, 45);
-		//mtpFrance.generateurChambre(5, TypeChambre.Simple);
+		Hotel  mtpFrance= new Hotel("à la Comédie", adresseHotel2,4);
+		Hotel  lilleFrance= new Hotel("chez les flamands", adresseHotel3, 3);
+		lilleFrance.generateurChambre(4, TypeChambre.Suite);
+		mtpFrance.generateurChambre(5, TypeChambre.Simple);
 		saintOtel.generateurChambre(10, TypeChambre.Suite);
 		saintOtel.generateurChambre(5,TypeChambre.Luxe);
 		
+		Endpoint.publish("http://localhost:8888/mtpFrance",mtpFrance);
+		Endpoint.publish("http://localhost:8888/lilleFrance",lilleFrance);
 		Endpoint.publish("http://localhost:8888/saintOtel",saintOtel);
 		System.err.println("Server is ready");
 	}

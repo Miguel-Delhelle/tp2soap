@@ -23,14 +23,12 @@ public interface IHotel{
 	// Récupérer prix chambre (id Chambre)
 	// Récupérer prix chambre (type Chambre)
 	// setReservation
-	@WebMethod 
-	public Hotel getThis(); // Juste pour test ce que ça fait
 	
 	@WebMethod
-	public String toString();
+	public String afficherHotel();
 	
 	@WebMethod
-	public Chambre getChambreDisponible(LocalDate dateEntree, LocalDate dateSortie, TypeChambre typeDeChambre) throws ChambreNonDisponibleException;
+	public String listeChambreDisponibleToString(String strDateEntree, String strDateSortie);
 	
 	@WebMethod
 	public List<TypeChambre> listeTypeChambre();

@@ -60,6 +60,25 @@
 			<artifactId>rt</artifactId>
 			<version>2.3.1</version>
 	    </dependency>
+	     <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>5.7.7</version>
+    </dependency>
+
+    <!-- Spring Security Config -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>5.7.7</version>
+    </dependency>
+    
+    <!-- Spring Context (si ce n'est pas déjà fait) -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.3.24</version>
+    </dependency>
 	</dependencies>
 
 	<build>

@@ -154,7 +154,7 @@ public class Chambre {
 	
 	@Override
 	public String toString() {
-		String str = "Numéro: "+this.getNumeroChambre()+"\nNombre lit: "+this.getNombreLit()+"\nPrix: "+this.getPrix();
+		String str = "Numéro: "+this.getNumeroChambre()+"\nNombre lit: "+this.getNombreLit()+"\nPrix: "+this.getPrix()+"\nType de chambre: "+this.getTypeChambre().toString();
 		return str;
 	}
 	public boolean idEquals(Chambre chambre2) {
