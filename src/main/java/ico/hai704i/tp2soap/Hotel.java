@@ -180,9 +180,9 @@ public class Hotel implements IHotel {
 	// Méthode Overridé
 	
 	@Override
+	@WebMethod
 	public String toString() {
-		return  "Etoiles: "+this.getNombreEtoileToString()+"\nHotel "+ this.getNom() + " à "+ this.getAdresse().getVille() + 
-				"\nNombre de chambre: "+ this.getListeChambre().size();
+		return this.getNom();
 	}
 	
 	
@@ -296,6 +296,7 @@ public class Hotel implements IHotel {
 
 	@WebMethod
 	public void setReservationWM(String strDateEntree, String strDateSortie, String strTypeDeChambre) throws ReservationFailedException, ChambreNonDisponibleException {
+		
 		TypeChambre typeDeChambre = TypeChambre.valueOf(strTypeDeChambre);
 		LocalDate dateEntree = MDMethod.strToDat(strDateEntree);
 		LocalDate dateSortie = MDMethod.strToDat(strDateSortie);
@@ -308,7 +309,13 @@ public class Hotel implements IHotel {
 	
 	@WebMethod
 	public String afficherHotel() {
-		return this.toString();
+		return "Etoiles: "+this.getNombreEtoileToString()+"\nHotel "+ this.getNom() + " à "+ this.getAdresse().getVille() + 
+				"\nNombre de chambre: "+ this.getListeChambre().size();
+	}
+	
+	@WebMethod
+	public String afficherNomHotel() {
+		return this.getNom();
 	}
 	
 }

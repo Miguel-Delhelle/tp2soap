@@ -31,6 +31,12 @@ public interface IHotel{
 	public String listeChambreDisponibleToString(String strDateEntree, String strDateSortie);
 	
 	@WebMethod
+	public String afficherNomHotel();
+	
+	@WebMethod
+	public String toString();
+	
+	@WebMethod
 	public List<TypeChambre> listeTypeChambre();
 	
 	@WebMethod

@@ -28,7 +28,7 @@ public class Chambre {
 		this.prix = prix;
 		this.hotel = hotel;
 		this.disponibilite = this.setDisponibiliteInitial();
-		this.typeChambre = TypeChambre.Simple;
+		this.typeChambre = TypeChambre.SIMPLE;
 	}
 	public Chambre(int numeroChambre, int nombreLit, double prix, Hotel hotel, TypeChambre typeChambre) {
 		super();

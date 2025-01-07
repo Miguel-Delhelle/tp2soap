@@ -2,10 +2,10 @@ package ico.hai704i.tp2soap;
 
 public enum TypeChambre {
 
-	Simple(1,50),
-	Double(2,60),
-	Suite(2,120),
-	Luxe(2,300);
+	SIMPLE(1,50),
+	DOUBLE(2,60),
+	SUITE(2,120),
+	LUXE(2,300);
 	
 	private int nombreLit;
 	private double prix;

@@ -1,5 +1,7 @@
 package web.service;
 
+import java.util.Scanner;
+
 import javax.xml.ws.Endpoint;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,16 +20,28 @@ public class Tp2soapApplication {
 		Adresse adresseHotel3 = new Adresse ("12"," Place du général de Gaulle", "59000","Lille", "France");
 		Hotel  saintOtel= new Hotel("à Saint-O", adresseHotel,3);
 		Hotel  mtpFrance= new Hotel("à la Comédie", adresseHotel2,4);
-		Hotel  lilleFrance= new Hotel("chez les flamands", adresseHotel3, 3);
-		lilleFrance.generateurChambre(4, TypeChambre.Suite);
-		mtpFrance.generateurChambre(5, TypeChambre.Simple);
-		saintOtel.generateurChambre(10, TypeChambre.Suite);
-		saintOtel.generateurChambre(5,TypeChambre.Luxe);
-		
-		Endpoint.publish("http://localhost:8888/mtpFrance",mtpFrance);
-		Endpoint.publish("http://localhost:8888/lilleFrance",lilleFrance);
-		Endpoint.publish("http://localhost:8888/saintOtel",saintOtel);
-		System.err.println("Server is ready");
+		Hotel  lilleFrance= new Hotel("Bien au nord", adresseHotel3, 3);
+		lilleFrance.generateurChambre(4, TypeChambre.SUITE);
+		lilleFrance.generateurChambre(12, TypeChambre.SIMPLE);
+		lilleFrance.generateurChambre(30, TypeChambre.DOUBLE);
+		mtpFrance.generateurChambre(5, TypeChambre.SIMPLE);
+		mtpFrance.generateurChambre(5, TypeChambre.LUXE);
+		mtpFrance.generateurChambre(12, TypeChambre.DOUBLE);
+		saintOtel.generateurChambre(10, TypeChambre.SUITE);
+		saintOtel.generateurChambre(5,TypeChambre.LUXE);
+		Scanner sc = new Scanner (System.in);
+		System.out.println("précisez le port d'ouverture du serveur: ");
+		String port = sc.nextLine();
+
+		if (port.matches("\\d{4}")) {
+			System.out.println("Le port est valide.");
+		} else {
+			System.out.println("Le port rentrée n'est pas valide. \n Il est donc défini sur 8888");
+		}
+		Endpoint.publish("http://localhost:"+port+"/hotel",mtpFrance);
+		//Endpoint.publish("http://localhost:"+port+"/hotel",lilleFrance);
+		//Endpoint.publish("http://localhost:"+port+"/hotel",saintOtel);
+		System.out.println("Server démarré, \n webservice soap de l'hotel: "+mtpFrance.toString());
 	}
 
 }
