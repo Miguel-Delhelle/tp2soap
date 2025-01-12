@@ -65,6 +65,8 @@ public class Hotel implements IHotel {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	@WebMethod
 	public Adresse getAdresse() {
 		return adresse;
 	}
@@ -273,6 +275,33 @@ public class Hotel implements IHotel {
 		return str+"\nCes chambres sont disponibles du: "+ MDMethod.dateToFrenchString(dateEntree)+" jusqu'au "+ MDMethod.dateToFrenchString(dateSortie);
 	}
 	// Cette méthode affiche que les chambres disponible ET différente ! Puisque ça sert à rien de montrer 42fois la même chambre.
+	
+	@WebMethod
+	public List<Chambre> listeChambreDisponible(String strDateEntree, String strDateSortie) {
+		LocalDate dateEntree = MDMethod.strToDat(strDateEntree);
+		LocalDate dateSortie = MDMethod.strToDat(strDateSortie);
+		String str ="";
+		Chambre tmpChambre = new Chambre();
+		LocalDate dateTmp = dateEntree;
+		// Initialisation liste de date
+		ArrayList<LocalDate> arrayDateReservee = new ArrayList<>();
+		List<Chambre> chambreDispo = new ArrayList<Chambre>();
+		while (!dateTmp.equals(dateSortie)) {
+			arrayDateReservee.add(dateTmp);
+			dateTmp = dateTmp.plusDays(1);
+		}
+		
+		for (int i = 0; i< this.getListeChambre().size();i++) {
+			if (this.getListeChambre().get(i).getDateDisponible().containsAll(arrayDateReservee) && 
+					!this.getListeChambre().get(i).equals(tmpChambre)){
+				str = str+"\n"+this.getListeChambre().get(i).toString()+"\n******************************";
+				tmpChambre = this.getListeChambre().get(i);
+				chambreDispo.add(tmpChambre);
+				
+			}
+		}
+		return chambreDispo;
+	}
 	
 	@WebMethod
 	public List<TypeChambre> listeTypeChambre() {

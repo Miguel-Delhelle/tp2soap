@@ -10,7 +10,6 @@ import ico.hai704i.tp2soap.Adresse;
 import ico.hai704i.tp2soap.Hotel;
 import ico.hai704i.tp2soap.TypeChambre;
 
-@SpringBootApplication
 public class Tp2soapApplication {
 
 	public static void main(String[] args) {
@@ -42,6 +41,7 @@ public class Tp2soapApplication {
 		//Endpoint.publish("http://localhost:"+port+"/hotel",lilleFrance);
 		//Endpoint.publish("http://localhost:"+port+"/hotel",saintOtel);
 		System.out.println("Server démarré, \n webservice soap de l'hotel: "+mtpFrance.toString());
+		sc.close();
 	}
 
 }
