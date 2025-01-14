@@ -13,7 +13,6 @@ import exception.ChambreNonDisponibleException;
 import exception.ReservationFailedException;
 import web.service.IHotel;
 
-@XmlRootElement
 @WebService(endpointInterface="web.service.IHotel", targetNamespace = "http://web.service.hotel/")
 public class Hotel implements IHotel {
 	
@@ -21,7 +20,7 @@ public class Hotel implements IHotel {
 	private String nom;
 	private Adresse adresse;
 	private int nombreEtoile = 0;
-	private ArrayList <Chambre> listeChambre = new ArrayList <Chambre>();
+	private List <Chambre> listeChambre = new ArrayList <Chambre>();
 	
 	// Constructeur
 	
@@ -86,7 +85,9 @@ public class Hotel implements IHotel {
 	public void setNombreEtoile(int nombreEtoile) {
 		this.nombreEtoile = nombreEtoile;
 	}
-	public ArrayList<Chambre> getListeChambre() {
+	
+	@WebMethod
+	public List<Chambre> getListeChambre() {
 		return listeChambre;
 	}
 	/*public Chambre getChambreDispo(LocalDate date) {

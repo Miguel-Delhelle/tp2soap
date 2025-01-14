@@ -1,5 +1,6 @@
 package web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -48,4 +49,8 @@ public interface IHotel{
 	
 	@WebMethod
 	public Adresse getAdresse();
+	
+	@WebMethod
+	public List<Chambre> getListeChambre();
+	
 }
