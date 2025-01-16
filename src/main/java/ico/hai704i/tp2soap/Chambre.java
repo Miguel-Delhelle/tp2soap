@@ -4,7 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
+
+import javax.jws.WebMethod;
 
 import common.MDMethod;
 
@@ -17,7 +20,7 @@ public class Chambre {
 	private TypeChambre typeChambre;
 	private Hotel hotel;
 	private HashMap <LocalDate, String> disponibilite;
-	private Reservation reservation;
+	private List<Reservation> reservation = new ArrayList<Reservation>();
 	
 	// Constructeurs
 	
@@ -85,12 +88,12 @@ public class Chambre {
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
 	}
-	
-	public Reservation getReservation() {
+
+	public List<Reservation> getReservation() {
 		return reservation;
 	}
 	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
+		this.reservation.add(reservation);
 	}
 	public void setDisponibilite(HashMap<LocalDate, String> disponibilite) {
 		this.disponibilite = disponibilite;

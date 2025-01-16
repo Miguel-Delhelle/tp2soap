@@ -11,28 +11,20 @@ public class Personne {
 	private int id;
 	private String prenom;
 	private String nom;
-	private Nationalite nationalite;
 	private int age;
 	private Adresse adressePersonne;
 	private Reservation reservation;
 	
 	// Constructeurs
 	
-	public Personne(int id, String prenom, String nom, String nationalite, int age) {
+	public Personne(int id, String prenom, String nom, int age) {
 		super();
 		this.id = id;
 		this.prenom = prenom;
 		this.nom = nom;
-		this.nationalite = MDMethod.strToNat(nationalite) ;
 		this.age = age;
 	}
-	public Personne(String nom, String prenom, String nationalite, int age) {
-		super();
-		this.prenom = prenom;
-		this.nom = nom;
-		this.nationalite = MDMethod.strToNat(nationalite); 
-		this.age = age;
-	}
+
 	public Personne(String nom, String prenom, int age) {
 		super();
 		this.prenom = prenom;
@@ -64,15 +56,7 @@ public class Personne {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Nationalite getNationalite() {
-		return nationalite;
-	}
-	public void setNationalite(String nationalite) {
-		this.nationalite = MDMethod.strToNat(nationalite);
-	}
-	public void setNationalite(Nationalite nationalite) {
-		this.nationalite = nationalite;
-	}
+
 	public int getAge() {
 		return age;
 	}
@@ -101,7 +85,7 @@ public class Personne {
 	}
 	@Override
 	public String toString() {
-		return "Personne [prenom=" + prenom + ", nom=" + nom + ", nationalite=" + nationalite + ", age=" + age + "]";
+		return "Personne [prenom=" + prenom + ", nom=" + nom + ", nationalite=" + ", age=" + age + "]";
 	}
 	
 }

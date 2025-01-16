@@ -332,7 +332,7 @@ public class Hotel implements IHotel {
 		LocalDate dateSortie = MDMethod.strToDat(strDateSortie);
 		Personne client = new Personne();
 		Reservation reservation = new Reservation(client,this.getChambreDisponible(dateEntree, dateSortie, typeDeChambre),dateEntree,dateSortie);
-		
+		this.getChambreDisponible(dateEntree, dateSortie, typeDeChambre).setReservation(reservation);
 		System.out.println(reservation.toString());
 		System.out.println(reservation.afficherConfirmation());
 	}

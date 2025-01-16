@@ -53,4 +53,5 @@ public interface IHotel{
 	@WebMethod
 	public List<Chambre> getListeChambre();
 	
+	
 }

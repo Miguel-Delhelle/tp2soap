@@ -37,10 +37,10 @@ public class Tp2soapApplication {
 		} else {
 			System.out.println("Le port rentrée n'est pas valide. \n Il est donc défini sur 8888");
 		}
-		Endpoint.publish("http://localhost:"+port+"/hotel",saintOtel);
+		Endpoint.publish("http://localhost:"+port+"/hotel",mtpFrance);
 		//Endpoint.publish("http://localhost:"+port+"/hotel",lilleFrance);
 		//Endpoint.publish("http://localhost:"+port+"/hotel",saintOtel);
-		System.out.println("Server démarré, \n webservice soap de l'hotel: "+saintOtel.toString());
+		System.out.println("Server démarré, \n webservice soap de l'hotel: "+mtpFrance.toString());
 		sc.close();
 	}
 

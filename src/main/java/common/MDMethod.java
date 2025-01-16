@@ -41,20 +41,12 @@ public abstract class MDMethod{
 		if ( date.getDayOfWeek().toString().equals("SUNDAY")) {jour = "Dimanche";}
 		return jour;
 	}
-	public static Nationalite strToNat(String str) {
-    	return Nationalite.valueOf(str.toUpperCase());
-	}
-	public static String natToStr(Nationalite n) {
-		String tmp = n.toString();
-		tmp = tmp.substring(0,1).toUpperCase()+tmp.substring(1).toLowerCase();
-		return tmp;
-	}
 	
 	public static LocalDate strToDat(String strDate) {
 		String[] date = strDate.split("-");
-		int jour = Integer.parseInt(date[2]);
+		int jour = Integer.parseInt(date[0]);
 		int mois = Integer.parseInt(date[1]);
-		int annee = Integer.parseInt(date[0]);
+		int annee = Integer.parseInt(date[2]);
 		
 		LocalDate localDate = LocalDate.of(annee, mois, jour);
 		
